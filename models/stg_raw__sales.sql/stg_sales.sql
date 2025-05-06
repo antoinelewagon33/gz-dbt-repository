@@ -10,9 +10,9 @@ renamed AS (
 
     SELECT
         date_date,
-        orders_id,
-        pdt_id,
-        revenue,
+        orders_id AS sales_id,
+        pdt_id AS product_id,
+        revenue AS amount,
         quantity
     FROM source
 
