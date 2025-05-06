@@ -1,14 +1,11 @@
 {{ config(materialized='view') }}
 
 WITH source_data AS (
-
     SELECT *
     FROM {{ source('raw', 'sales') }}
-
 ),
 
 renamed AS (
-
     SELECT
         id AS sales_id,
         date AS sales_date,
@@ -18,7 +15,6 @@ renamed AS (
         amount,
         margin
     FROM source_data
-
 )
 
 SELECT * FROM renamed
