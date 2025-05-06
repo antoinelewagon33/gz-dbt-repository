@@ -1,20 +1,19 @@
-{{ config(materialized='view') }}
+version: 2
 
-WITH source_data AS (
-    SELECT *
-    FROM {{ source('raw', 'sales') }}
-),
+sources:
+  - name: raw
+    schema: gz_raw_data
+    description: "Raw data ingested from the operational system"
 
-renamed AS (
-    SELECT
-        id AS sales_id,
-        date AS sales_date,
-        pdt_id AS product_id,
-        user_id,
-        quantity,
-        amount,
-        margin
-    FROM source_data
-)
+    tables:
+      - name: sales
+        identifier: raw_gz_sales
+        description: "Sales transactions"
 
-SELECT * FROM renamed
+      - name: product
+        identifier: raw_gz_product
+        description: "Product catalog"
+
+      - name: ship
+        identifier: raw_gz_ship
+        description: "Shipping data"
