@@ -1,21 +1,35 @@
-
 version: 2
 
-models:
-    - name: my_first_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+sources:
+  - name: raw      # ← alias du dataset gz_raw_data
+    schema: gz_raw_data
+    description: "Données brutes extraites pour le projet gz"
 
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
-      columns:
+    tables:
+      - name: sales
+        identifier: raw_gz_sales
+        description: "Données de ventes brutes"
+        columns:
           - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+            description: "Identifiant unique de la vente"
+          - name: date
+            description: "Date de la vente"
+          # Ajoute d'autres colonnes si tu veux les documenter
+
+      - name: product
+        identifier: raw_gz_product
+        description: "Liste des produits"
+        columns:
+          - name: id
+            description: "ID produit"
+          - name: price
+            description: "Prix de vente"
+
+      - name: ship
+        identifier: raw_gz_ship
+        description: "Données d’expédition"
+        columns:
+          - name: id
+            description: "Identifiant de l’expédition"
+          - name: shipping_fee
+            description: "Frais d’expédition"
