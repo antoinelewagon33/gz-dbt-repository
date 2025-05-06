@@ -1,0 +1,24 @@
+{{ config(materialized='view') }}
+
+WITH source_data AS (
+
+    SELECT *
+    FROM {{ source('raw', 'sales') }}
+
+),
+
+renamed AS (
+
+    SELECT
+        id AS sales_id,
+        date AS sales_date,
+        pdt_id AS product_id,
+        user_id,
+        quantity,
+        amount,
+        margin
+    FROM source_data
+
+)
+
+SELECT * FROM renamed
