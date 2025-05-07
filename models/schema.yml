@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: gz_raw_data
+    description: "Raw data ingested from the operational system"
+
+    tables:
+      - name: sales
+        identifier: raw_gz_sales
+        description: "Sales transactions"
+
+      - name: product
+        identifier: raw_gz_product
+        description: "Product catalog"
+
+      - name: ship
+        identifier: raw_gz_ship
+        description: "Shipping data"
