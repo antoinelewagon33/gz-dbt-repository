@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: finance_days
+    description: >
+      Daily financial KPIs used by the finance team for basket analysis.
+      Includes transaction count and average basket per day.
+    columns:
+      - name: sales_date
+        description: Date of the sales (daily granularity)
+        tests:
+          - not_null
+      - name: daily_transactions
+        description: Number of distinct sales transactions for the day
+        tests:
+          - not_null
+      - name: average_basket
+        description: Average amount per transaction for the day
+        tests:
+          - not_null
